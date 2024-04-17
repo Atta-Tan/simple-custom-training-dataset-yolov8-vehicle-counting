@@ -1,0 +1,18 @@
+Frames in Process : 301 / 301 frames	(100.0/ 100.0 %)
+Input Size 1280 x 720
+Output Size (Rescaled): 1280 x 720
+Frame Rate per Second: 30.02493765586035
+-----------------------------------------------------------------------------------------------------------
+Start time (min): Wed Apr 17 22:42:03 2024
+End time (min): Wed Apr 17 22:42:57 2024
+Running time (min): 0.89
+-----------------------------------------------------------------------------------------------------------
+
+Approch 1 - Vehicle Counting @ Last Frame
+ ,TYPE,VOLUME,PCU
+ , ,veh/hr.,veh/hr.
+ ,car,7
+ ,motorcycle,2
+ ,bus,0
+ ,truck,4
+ ,sum,13
