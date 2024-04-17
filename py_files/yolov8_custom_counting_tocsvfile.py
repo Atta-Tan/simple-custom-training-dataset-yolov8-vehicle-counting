@@ -11,13 +11,13 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "yolov8x"
+weight_path = "yolov8m"
 model = YOLO(weight_path)
 
 # Open the video file
 #TODO Set input file name below
 # fill in put path in any vdo file (.MOV or .avi or .mp4 file is recommended)
-input_path = "vdo_6.MOV"
+input_path = "vdo_traffic_01.MOV"
 cap = cv2.VideoCapture(input_path)
 frame_width = int(cap.get(3))           # CV_CAP_PROP_FRAME_WIDTH
 frame_height = int(cap.get(4))          # CV_CAP_PROP_FRAME_HEIGHT
@@ -35,7 +35,7 @@ resized_height = int(frame_height * scale_percent / 100)
 out_dim = (resized_width, resized_height)
 
 #TODO Set output file name below
-output_path = "output/tracking_output.avi"
+output_path = "output/counting_output.avi"
 #set output path in avi file (.avi)
 out = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc('M','J','P','G'), fps, (out_dim))
 
@@ -186,7 +186,7 @@ while cap.isOpened():
                 ]
 
         #TODO set csv filename
-        csv_filename = "output/tracking_output.csv"
+        csv_filename = "output/counting_output.csv"
         # writing to csv file
         with open(csv_filename, 'w', newline='') as csvfile:
             csvfile.write("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)")
