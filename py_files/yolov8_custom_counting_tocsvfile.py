@@ -11,7 +11,7 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "yolov8m"
+weight_path = "yolov8m.pt"
 model = YOLO(weight_path)
 
 # Open the video file
