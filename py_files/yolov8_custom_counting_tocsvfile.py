@@ -177,35 +177,6 @@ while cap.isOpened():
                 [' ', 'sum',str(sum_cnt_left_line)],
                 ]
 
-        #TODO set csv filename
-        csv_filename = "output/counting_output.csv"
-        # writing to csv file
-        with open(csv_filename, 'w', newline='') as csvfile:
-            csvfile.write("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)")
-            csvfile.write("\n"+"Input Size " + str(frame_width) + " x " + str(frame_height))
-            csvfile.write("\n"+"Output Size (Rescaled): " + str(out_dim[0]) + " x " + str(out_dim[1]))
-            csvfile.write("\n"+"Frame Rate per Second: " + str(fps))
-            end = time.time()
-            total_time = round((end - start)/60, 2)
-            csvfile.write("\n"+"-----------------------------------------------------------------------------------------------------------")
-            csvfile.write("\n"+"Start time (min): "+ str(time.ctime(start)))
-            csvfile.write("\n"+"End time (min): "+ str(time.ctime(end)))
-            csvfile.write("\n"+"Running time (min): "+ str(total_time))
-            csvfile.write("\n"+"-----------------------------------------------------------------------------------------------------------")
-            
-            csvfile.write("\n"+"\n"+"Approch 1 - Vehicle Counting @ Last Frame"+"\n")
-            # creating a csv writer object
-            csvwriter = csv.writer(csvfile)
-            # writing the fields
-            csvwriter.writerow(fields)                
-            # writing the data rows
-            csvwriter.writerows(rows_left)
-            
-
-            print("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)"\
-                + f" ------ Data has been written to {csv_filename}")
-                
-
         # resize 
         resized = cv2.resize(annotated_frame, out_dim)
         # Write the frame into the file 'output.avi'
