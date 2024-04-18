@@ -1,8 +1,11 @@
 # vehicle-classificataion-and-counting-system
-This project is a simple guidance for counting and classification system for vechicle object using YOLOv8 model, developed by Ultralytics team.
+This repository is a simple guidance of counting and classification system for vechicle object using YOLOv8 model, developed by Ultralytics team.
 YOLOv8 is one of popular real-time detection and classification tasks and supports multi-object tracking (MOT) algorithms like Bot-SORT and ByteTrack also. This model is very friendly for new users and powerful one.
-For counting vehicle objects, YOLOv8 was trained by using COCO128 datasets, so it can be used to detect and classify any vehicle classes in COCO128 dataset such as car, motorcycle, bus, and truck easily and accurately. 
-But if we want to use it for any custom classes, we need to train our custom data first. This model also supports training mode that we can train any custom datasets for some specific object detection and classification.
+For counting vehicle objects, YOLOv8 was trained by using COCO128 datasets, so YOLOv8 training wieght, internal parameters, can be used to detect and classify any vehicle classes in COCO128 dataset such as car, motorcycle, bus, and truck easily and accurately. 
+But if we want to use it for any custom classes, we need to train our custom training weight first. This model also supports training mode that we can train any custom datasets for some specific object detection and classification.
+
+In this project, I will show how to easily setup process and run counting py file using YOLOv8 first, and the next step, I will display how to train custom data weight for my specific task, to classify 11 different vehicle classes.
+
 more information about Ultralytics: https://docs.ultralytics.com/
 
 ## Getting Started
