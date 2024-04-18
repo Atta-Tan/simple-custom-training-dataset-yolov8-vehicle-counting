@@ -42,5 +42,7 @@ Then, run py file
 ```sh
 python ./py_files/yolov8_custom_counting_tocsvfile.py
 ```
+![Running Process](images/run_to_count.png)
+
 
 
