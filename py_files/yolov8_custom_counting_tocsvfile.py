@@ -167,6 +167,8 @@ while cap.isOpened():
         cv2.putText(annotated_frame, "truck: "+str(cnt_cls_left_line[7]), (font_org_left[0],font_org_left[1]+font_nl_left*3), font_style_left, font_scale_left, font_color_left, font_thickness_left, cv2.LINE_AA)
         cv2.putText(annotated_frame, "sum: "+str(sum_cnt_left_line),(font_org_left[0]+10,(font_org_left[1]+font_nl_left*4+5)), font_style_left , font_scale_left_sum , font_color_left_sum , font_thickness_left_sum , cv2.LINE_AA)
 
+        print("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)"\
+            + f" ------ Data has been written to {output_path}")
         # resize 
         resized = cv2.resize(annotated_frame, out_dim)
         # Write the frame into the file 'output.avi'
