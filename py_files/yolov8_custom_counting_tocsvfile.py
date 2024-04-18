@@ -11,7 +11,7 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "yolov8m.pt"
+weight_path = "yolov8n.pt"
 model = YOLO(weight_path)
 
 # Open the video file
@@ -29,22 +29,21 @@ frame_current = int(0)
 
 #TODO Set percentage of output size  
 # this number cannot be zero (1 is a minimize size and 100 is original size) 
-scale_percent = 100 # scale down percentage of output size from original size // This affect to only size of collecting VDO, not counting method
+scale_percent = 50 # scale down percentage of output size from original size // This affect to only size of collecting VDO, not counting method
 resized_width = int(frame_width * scale_percent / 100)
 resized_height = int(frame_height * scale_percent / 100)
 out_dim = (resized_width, resized_height)
 
 #TODO Set output file name below
-output_path = "output/counting_output.avi"
-#set output path in avi file (.avi)
+output_path = "output/counting_output.avi"  #set output path in avi file (.avi)
 out = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc('M','J','P','G'), fps, (out_dim))
 
 #TODO Set uncomment to store track history or object 
-# # Store the track history
-# track_history = defaultdict(lambda: []) # for tracking object
+# Store the track history
+track_history = defaultdict(lambda: []) # for tracking object
 
 # Class names of this model
-cls_name = ['person','bicycle','car', 'motorcycle','airplane', 'bus', 'train','truck']
+cls_name = ['person','bicycle','car', 'motorcycle','airplane', 'bus', 'train','truck'] #select first 8 classes to cover vehicle classes
 
 # Color of each class in this model (can change if needed)
 cls_color=[(0,0,0),(0,0,0),(255,105,180), (64,224,208),(0,0,0), (147,112,219),(0,0,0), (128,128,0)]
@@ -92,7 +91,6 @@ def count_obj(im, box, id, cls, conf):
         if center_coor[1] < (pos_y_left_line_1+offset_left_line) and center_coor[1] > (pos_y_left_line_1-offset_left_line):
             if center_coor[0] > (pos_x_left_line_1) and center_coor[0] < (pos_x_left_line_2):
                 counted_obj_id.append(id)
-                # cv2.rectangle(im, (pos_x_left_line_1, (pos_y_left_line_1-offset_left_line)), ((pos_x_left_line_1+pos_x_left_line_2-pos_x_left_line_1), pos_y_left_line_1+offset_left_line), (0, 200, 0), -1) 
                 cv2.line(im, (pos_x_left_line_1, pos_y_left_line_1), (pos_x_left_line_2, pos_y_left_line_1), (0,255,0), thickness=5)
                 for i in cls_id:
                     if cls == i:
@@ -130,28 +128,22 @@ while cap.isOpened():
             confidences = results[0].boxes.conf.cpu()
             # Class Name
             class_ids = results[0].boxes.cls.int().cpu()
-            # # Visualize the results on the frame
-            # annotated_frame = results[0].plot(font_size=0.1)
+            # Visualize the results on the frame
+            annotated_frame = results[0].plot(font_size=0.1)
 
             # Plot the tracks
             for bbox, track_id, conf, cls in zip(boxes, track_ids, confidences, class_ids):
                 # # Draw the tracking lines using center coordinator
                 center_coor = (int(bbox[0] + (bbox[2]-bbox[0])/2 ), int(bbox[1] + (bbox[3] - bbox[1])/2 ))
-                #TODO Set uncomment line 170-177 to visualize tracking in result
-                # track = track_history[track_id]
-                # track.append(center_coor)  # x, y center point
-                # if len(track) > 90:  # retain 90 tracks for 90 frames
-                #     track.pop(0)
-                # points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
-                # cv2.polylines(annotated_frame, [points], isClosed=False, color=(0, 230, 0), thickness=1)
-                #TODO Set uncomment line 181-182 to visualize center point of object
-                # cv2.circle(annotated_frame, center_coor, 1, (255,0,255), -1)
-                # Visualize bounding boxes (bbox)
-                cv2.rectangle(annotated_frame, (int(bbox[0]),int(bbox[1])), (int(bbox[2]),int(bbox[3])), cls_color[cls], thickness = 2) 
-                # Visualize text of bbox class
-                cls_colors = []
-                cv2.putText(annotated_frame, cls_name[cls], (int(bbox[0]),int(bbox[1]-15)) \
-                            , cv2.FONT_HERSHEY_COMPLEX , 1, cls_color[cls], 2, cv2.LINE_AA)
+                #TODO Set uncomment to visualize tracking in result
+                track = track_history[track_id]
+                track.append(center_coor)  # x, y center point
+                if len(track) > 90:  # retain 90 tracks for 90 frames
+                    track.pop(0)
+                points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
+                cv2.polylines(annotated_frame, [points], isClosed=False, color=(0, 230, 0), thickness=1)
+                #TODO Set uncomment to visualize center point of object
+                cv2.circle(annotated_frame, center_coor, 1, (255,0,255), -1)
                 # Run counting process
                 count_obj(annotated_frame, bbox, track_id, cls, conf)
                 
