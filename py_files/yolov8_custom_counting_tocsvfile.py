@@ -11,7 +11,7 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "yolov8n.pt"
+weight_path = "YOLOv8n.pt" #eg. YOLOv8n.pt
 model = YOLO(weight_path)
 
 # Open the video file
@@ -29,7 +29,7 @@ frame_current = int(0)
 
 #TODO Set percentage of output size  
 # this number cannot be zero (1 is a minimize size and 100 is original size) 
-scale_percent = 50 # scale down percentage of output size from original size // This affect to only size of collecting VDO, not counting method
+scale_percent = 100 # scale down percentage of output size from original size // This affect to only size of collecting VDO, not counting method
 resized_width = int(frame_width * scale_percent / 100)
 resized_height = int(frame_height * scale_percent / 100)
 out_dim = (resized_width, resized_height)
@@ -166,16 +166,6 @@ while cap.isOpened():
         cv2.putText(annotated_frame, "bus: "+str(cnt_cls_left_line[5]), (font_org_left[0],font_org_left[1]+font_nl_left*2), font_style_left, font_scale_left, font_color_left, font_thickness_left, cv2.LINE_AA)
         cv2.putText(annotated_frame, "truck: "+str(cnt_cls_left_line[7]), (font_org_left[0],font_org_left[1]+font_nl_left*3), font_style_left, font_scale_left, font_color_left, font_thickness_left, cv2.LINE_AA)
         cv2.putText(annotated_frame, "sum: "+str(sum_cnt_left_line),(font_org_left[0]+10,(font_org_left[1]+font_nl_left*4+5)), font_style_left , font_scale_left_sum , font_color_left_sum , font_thickness_left_sum , cv2.LINE_AA)
-
-        # Write Counting Results at Last Frame to CSV file (.csv)
-        fields = [' ', 'TYPE', 'VOLUME', 'PCU']
-        rows_left = [[' ', ' ', 'veh/hr.', 'veh/hr.'],
-                [' ', 'car', str(cnt_cls_left_line[2])],
-                [' ', 'motorcycle',str(cnt_cls_left_line[3])],
-                [' ', 'bus',str(cnt_cls_left_line[5])],
-                [' ', 'truck',str(cnt_cls_left_line[7])],
-                [' ', 'sum',str(sum_cnt_left_line)],
-                ]
 
         # resize 
         resized = cv2.resize(annotated_frame, out_dim)
