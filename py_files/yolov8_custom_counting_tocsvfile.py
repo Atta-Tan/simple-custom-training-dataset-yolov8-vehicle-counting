@@ -45,9 +45,6 @@ track_history = defaultdict(lambda: []) # for tracking object
 # Class names of this model
 cls_name = ['person','bicycle','car', 'motorcycle','airplane', 'bus', 'train','truck'] #select first 8 classes to cover vehicle classes
 
-# Color of each class in this model (can change if needed)
-cls_color=[(0,0,0),(0,0,0),(255,105,180), (64,224,208),(0,0,0), (147,112,219),(0,0,0), (128,128,0)]
-
 # Declare variables 
 cls_id = [2, 3, 5, 7]
 dummy_cls_0 = 0
