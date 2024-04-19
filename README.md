@@ -58,9 +58,11 @@ To train a custom weight for other specific classes that are not in any original
 
 ![dataset format](images/dataset_format01.png)
 
+In my custom case, I want to train detection and classification model that can classify 11 different vehicle classes on Thailand road. What I have to do is creating custom dataset of all vehicle classes and train it all to get efficient training weight. Thus, I collected traffic images on Thailand urban road in various situations as a raw dataset, and then annotated vehicle object bounding boxes and class names of each vehicle for every images. 
+
 There are many ways to You can create your own dataset, in manual way or using any labeling tools, but using Roboflow framework is recommended for me.
 
-- Easy to annotate objects to dataset
+- It is asy to annotate objects to dataset
 
 ![roboflow01](images/RoboFlow01.png)
 ![roboflow02](images/RoboFlow02.png)
@@ -98,7 +100,7 @@ And with this custom weight (best.pt), we are ready to create new model for spec
 ## Running vehicle counting for custom task
 Setting WEIGHT_PATH with our customweight
 
-Then, try to run counting .py file again
+And then, try to run counting .py file again.
 
 ![test Result](images/custom_counting_output.jpg)
 

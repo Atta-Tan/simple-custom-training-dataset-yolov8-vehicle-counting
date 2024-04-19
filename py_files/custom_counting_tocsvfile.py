@@ -11,7 +11,7 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "best_5feb2024.pt"
+weight_path = "best.pt"
 model = YOLO(weight_path)
 
 # Open the video file
@@ -145,14 +145,14 @@ while cap.isOpened():
             for bbox, track_id, conf, cls in zip(boxes, track_ids, confidences, class_ids):
                 # # Draw the tracking lines using center coordinator
                 center_coor = (int(bbox[0] + (bbox[2]-bbox[0])/2 ), int(bbox[1] + (bbox[3] - bbox[1])/2 ))
-                #TODO Set uncomment line 170-177 to visualize tracking in result
+                #TODO Set uncomment to visualize tracking in result
                 # track = track_history[track_id]
                 # track.append(center_coor)  # x, y center point
                 # if len(track) > 90:  # retain 90 tracks for 90 frames
                 #     track.pop(0)
                 # points = np.hstack(track).astype(np.int32).reshape((-1, 1, 2))
                 # cv2.polylines(annotated_frame, [points], isClosed=False, color=(0, 230, 0), thickness=1)
-                #TODO Set uncomment line 181-182 to visualize center point of object
+                #TODO Set uncomment to visualize center point of object
                 # cv2.circle(annotated_frame, center_coor, 1, (255,0,255), -1)
                 # Visualize bounding boxes (bbox)
                 cv2.rectangle(annotated_frame, (int(bbox[0]),int(bbox[1])), (int(bbox[2]),int(bbox[3])), cls_color[cls], thickness = 2) 
@@ -190,56 +190,9 @@ while cap.isOpened():
         cv2.putText(annotated_frame, "full_trailer: "+str(cnt_cls_left_line[0]), (font_org_left[0],font_org_left[1]+font_nl_left*10), font_style_left, font_scale_left, font_color_left, font_thickness_left, cv2.LINE_AA)
         cv2.putText(annotated_frame,("sum: ")+str(sum_cnt_left_line),(font_org_left[0]+10,(font_org_left[1]+font_nl_left*11+5)), font_style_left , font_scale_left_sum , font_color_left_sum , font_thickness_left_sum , cv2.LINE_AA)
 
-        # Write Counting Results at Last Frame to CSV file (.csv)
-        fields = [' ', 'TYPE', 'VOLUME', 'PCU']
-        rows_left = [[' ', ' ', 'veh/hr.', 'veh/hr.'],
-                [' ','motorcycle', str(cnt_cls_left_line[7]), str(int(round(cnt_cls_left_line[7]*0.33,0)))],
-                [' ', 'passenger_car',str(cnt_cls_left_line[8]), str(int(round(cnt_cls_left_line[8]*1.0,0)))],
-                [' ', 'van',str(cnt_cls_left_line[10]), str(int(round(cnt_cls_left_line[10]*1.0,0)))],
-                [' ', 'light_truck',str(cnt_cls_left_line[4]), str(int(round(cnt_cls_left_line[4]*1.0,0)))],
-                [' ', 'medium_truck',str(cnt_cls_left_line[6]), str(int(round(cnt_cls_left_line[6]*2.1,0)))],
-                [' ', 'heavy_truck',str(cnt_cls_left_line[2]), str(int(round(cnt_cls_left_line[2]*2.5,0)))],
-                [' ', 'light_bus',str(cnt_cls_left_line[3]), str(int(round(cnt_cls_left_line[3]*1.5,0)))],
-                [' ', 'medium_bus',str(cnt_cls_left_line[5]), str(int(round(cnt_cls_left_line[5]*1.5,0)))],
-                [' ', 'heavy_bus',str(cnt_cls_left_line[1]), str(int(round(cnt_cls_left_line[1]*2.1,0)))],
-                [' ', 'semi_trailer',str(cnt_cls_left_line[9]), str(int(round(cnt_cls_left_line[9]*2.5,0)))],
-                [' ', 'full_trailer',str(cnt_cls_left_line[0]), str(int(round(cnt_cls_left_line[0]*2.5,0)))],
-                [' ', 'SUM',str(sum_cnt_left_line), str(int(round(cnt_cls_left_line[7]*0.33,0))+int(round(cnt_cls_left_line[8]*1.0,0))+int(round(cnt_cls_left_line[10]*1.0,0))
-                                                +int(round(cnt_cls_left_line[4]*1.0,0))+int(round(cnt_cls_left_line[6]*2.1,0))+int(round(cnt_cls_left_line[2]*2.5,0))
-                                                +int(round(cnt_cls_left_line[3]*1.5,0))+int(round(cnt_cls_left_line[5]*1.5,0))+int(round(cnt_cls_left_line[1]*2.1,0))
-                                                +int(round(cnt_cls_left_line[9]*2.5,0))+int(round(cnt_cls_left_line[0]*2.5,0))
-                                                )],
-                ]
-
-        #TODO set csv filename
-        csv_filename = "CSV_FILENAME_PATH"
-        # writing to csv file
-        with open(csv_filename, 'w', newline='') as csvfile:
-            csvfile.write("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)")
-            csvfile.write("\n"+"Input Size " + str(frame_width) + " x " + str(frame_height))
-            csvfile.write("\n"+"Output Size (Rescaled): " + str(out_dim[0]) + " x " + str(out_dim[1]))
-            csvfile.write("\n"+"Frame Rate per Second: " + str(fps))
-            end = time.time()
-            total_time = round((end - start)/60, 2)
-            csvfile.write("\n"+"-----------------------------------------------------------------------------------------------------------")
-            csvfile.write("\n"+"Start time (min): "+ str(time.ctime(start)))
-            csvfile.write("\n"+"End time (min): "+ str(time.ctime(end)))
-            csvfile.write("\n"+"Running time (min): "+ str(total_time))
-            csvfile.write("\n"+"-----------------------------------------------------------------------------------------------------------")
-            
-            csvfile.write("\n"+"\n"+"Approch 1 - Vehicle Counting @ Last Frame"+"\n")
-            # creating a csv writer object
-            csvwriter = csv.writer(csvfile)
-            # writing the fields
-            csvwriter.writerow(fields)                
-            # writing the data rows
-            csvwriter.writerows(rows_left)
-            
-
-            print("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)"\
-                + f" ------ Data has been written to {csv_filename}")
+        print("Frames in Process : "+ str(frame_current)+ " / " + str(frame_total) + " frames" + "\t" +"("+str(round(frame_current/frame_total*100,2))+ "/ 100.0 %)"\
+            + f" ------ Data has been written to {output_path}")
                 
-
         # resize 
         resized = cv2.resize(annotated_frame, out_dim)
         # Write the frame into the file 'output.avi'
