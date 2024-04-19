@@ -76,6 +76,24 @@ There are many ways to You can create your own dataset, in manual way or using a
 
 ![roboflow06](images/RoboFlow06-Export.png)
 
+## Training Custom Weight
+Train our custom dataset using YOLOv8.
+more information about Training with Ultralytics: https://docs.ultralytics.com/modes/train/
+
+Example:
+
+```sh
+yolo detect train data=data.yaml model=yolov8n.yaml epochs=NUMBER_OF_EPOCHS imgsz=TARGET_IMAGE_SIZE save=True project=PROJECT_NAME name=EXPERIMENT_NAME
+```
+
+After training process, we will get our custom training weight in .pt file (best and last) and experimental result that indicate training performance.
+
+![trainging Result](images/training_result.png)
+
+And now, we 
+
+## 
+
 
 
 
