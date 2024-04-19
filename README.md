@@ -102,8 +102,9 @@ Setting WEIGHT_PATH with our customweight
 
 And then, try to run counting .py file again.
 
-![test Result1](images/custom_counting_output01.jpg)
-![test Result2](images/custom_counting_output02.jpg)
+https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/a5801125-6d5d-4278-95c0-df99b107b9f1
+
+
 
 
 
