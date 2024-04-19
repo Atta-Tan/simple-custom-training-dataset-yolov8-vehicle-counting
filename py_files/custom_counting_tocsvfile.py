@@ -11,13 +11,13 @@ start = time.time()
 
 #TODO set weight for detection & Classification below
 # choose weight file (.pt)
-weight_path = "WEIGHT_PATH"
+weight_path = "best_5feb2024.pt"
 model = YOLO(weight_path)
 
 # Open the video file
 #TODO Set input file name below
 # fill in put path in any vdo file (.MOV or .avi or .mp4 file is recommended)
-input_path = "INPUT_PATH"
+input_path = "vdo_traffic_01.MOV"
 cap = cv2.VideoCapture(input_path)
 frame_width = int(cap.get(3))           # CV_CAP_PROP_FRAME_WIDTH
 frame_height = int(cap.get(4))          # CV_CAP_PROP_FRAME_HEIGHT
@@ -35,7 +35,7 @@ resized_height = int(frame_height * scale_percent / 100)
 out_dim = (resized_width, resized_height)
 
 #TODO Set output file name below
-output_path = "OUTPUT_PATH"
+output_path = "output/custom_counting_output.avi"
 #set output path in avi file (.avi)
 out = cv2.VideoWriter(output_path,cv2.VideoWriter_fourcc('M','J','P','G'), fps, (out_dim))
 
@@ -83,10 +83,10 @@ conf_list_left_line = []
 #TODO set positions of counting lines below
 # change percentage of start and end points of counting lines
 offset_left_line=30
-pos_y_left_line_1=int(frame_height*0.70)
+pos_y_left_line_1=int(frame_height*0.85)
 # pos_y_left_line_2=int(frame_height*0.50)
-pos_x_left_line_1=int(frame_width*0.075)
-pos_x_left_line_2=int(frame_width*0.42)
+pos_x_left_line_1=int(frame_width*0.42)
+pos_x_left_line_2=int(frame_width*0.95)
 
 ################################################################################################################################
 #Counting Method   
@@ -101,7 +101,7 @@ def count_obj(im, box, id, cls, conf):
             if center_coor[0] > (pos_x_left_line_1) and center_coor[0] < (pos_x_left_line_2):
                 counted_obj_id.append(id)
                 # cv2.rectangle(im, (pos_x_left_line_1, (pos_y_left_line_1-offset_left_line)), ((pos_x_left_line_1+pos_x_left_line_2-pos_x_left_line_1), pos_y_left_line_1+offset_left_line), (0, 200, 0), -1) 
-                cv2.line(im, (pos_x_left_line_1, pos_y_left_line_1), (pos_x_left_line_2, pos_y_left_line_1), (0,255,255), thickness=10)
+                cv2.line(im, (pos_x_left_line_1, pos_y_left_line_1), (pos_x_left_line_2, pos_y_left_line_1), (0,255,255), thickness=5)
                 for i in cls_id:
                     if cls == i:
                         cnt_cls_left_line[i] += 1
@@ -164,12 +164,12 @@ while cap.isOpened():
                 count_obj(annotated_frame, bbox, track_id, cls, conf)
                 
         #Visualize Left lane Counting
-        line_color_left = (0, 255, 0)
+        line_color_left = (255, 0, 0)
         line_start_point_left = (pos_x_left_line_1, pos_y_left_line_1)
         line_end_point_left = (pos_x_left_line_2, pos_y_left_line_1)
-        cv2.line(annotated_frame, line_start_point_left, line_end_point_left, line_color_left, thickness=3)
-        font_color_left = (0, 255, 0)
-        font_color_left_sum = (0, 255, 0)
+        cv2.line(annotated_frame, line_start_point_left, line_end_point_left, line_color_left, thickness=2)
+        font_color_left = (255, 0, 0)
+        font_color_left_sum = (255, 0, 0)
         font_org_left = (int(frame_width*0.02), int(frame_height*0.03))     # origin point of result text of left line counting
         font_nl_left = 30                                                   # new line space
         font_style_left = cv2.FONT_HERSHEY_COMPLEX

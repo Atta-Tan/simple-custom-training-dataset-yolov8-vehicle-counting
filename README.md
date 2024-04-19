@@ -90,11 +90,13 @@ After training process, we will get our custom training weight in .pt file (best
 
 ![trainging Result](images/training_result.png)
 
-And with this custom weight, we are ready to create new model for specific object detection and classification.
+And with this custom weight (best.pt), we are ready to create new model for specific object detection and classification.
 
 ## Running vehicle counting for custom task
 Setting WEIGHT_PATH with our customweight
 Then, try to run counting .py file again
+
+![test Result](vdo_traffic_01.MOV)
 
 
 
