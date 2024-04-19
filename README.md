@@ -15,18 +15,16 @@ clone this repo to get .py files for vehicle connting
 ```sh
 git clone https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting.git
 ```
-next, create virtual environment and install ultralytics (or clone Ultralytics repo (optional))
-
+next, create virtual environment and Activate virtual environment (as ENV)
 ```sh
 cd ...ROOTPATH.../simple-custom-training-dataset-yolov8-vehicle-counting
 python -m venv ENV
-pip install Ultralytics
+.\ENV\Scripts\activate
 ```
-Activate virtual environment (as ENV) and install packages
+Install ultralytics (or clone Ultralytics repo (optional))
 
 ```sh
-.\ENV\Scripts\activate
-pip install -e .
+pip install Ultralytics
 ```
 
 (Optional) In case of need to run with GPU
