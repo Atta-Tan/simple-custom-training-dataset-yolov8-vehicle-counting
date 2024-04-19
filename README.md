@@ -8,7 +8,7 @@ For the counting method, this system use OpenCV to create a referenced line to c
 
 In this project, I will show how to easily setup process and run counting py file using original weight of YOLOv8 first, and the next step, I will display how to train custom data weight for my specific task, to classify 11 different vehicle classes.
 
-more information about Ultralytics: https://docs.ultralytics.com/
+More information about Ultralytics: https://docs.ultralytics.com/
 
 ## Getting Started
 clone this repo to get .py files for vehicle connting
@@ -36,7 +36,7 @@ pip3 uninstall torch torchvision torchaudio
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 ```
 
-more information about Pytorch: https://pytorch.org/get-started/locally/
+More information about Pytorch: https://pytorch.org/get-started/locally/
 
 Now our environment is ready!!
 
@@ -78,7 +78,8 @@ There are many ways to You can create your own dataset, in manual way or using a
 
 ## Training Custom Weight
 Train our custom dataset using YOLOv8.
-more information about Training with Ultralytics: https://docs.ultralytics.com/modes/train/
+
+More information about Training with Ultralytics: https://docs.ultralytics.com/modes/train/
 
 Example:
 
