@@ -58,17 +58,21 @@ To train a custom weight for other specific classes that are not in any original
 
 There are many ways to You can create your own dataset, in manual way or using any labeling tools, but using Roboflow framework is recommended for me.
 
-easy to annotate objects
+- Easy to annotate objects to dataset
 
 ![roboflow01](images/RoboFlow01.png)
-
-![roboflow01](images/RoboFlow02.png)
-
+![roboflow02](images/RoboFlow02.png)
 ![roboflow03](images/RoboFlow03-Annotation.png)
+
+- Check dataset balance and details
 
 ![roboflow04](images/RoboFlow04-HealthCheck.png)
 
+- Generate dataset with Preprocessing and Augmentaion.
+
 ![roboflow05](images/RoboFlow05-Augmentation.png)
+
+- Then, export to YOLOv8 format.
 
 ![roboflow06](images/RoboFlow06-Export.png)
 
