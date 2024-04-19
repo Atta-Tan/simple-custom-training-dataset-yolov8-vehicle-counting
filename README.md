@@ -4,7 +4,9 @@ YOLOv8 is one of popular real-time detection and classification tasks and suppor
 For counting vehicle objects, YOLOv8 was trained by using COCO128 datasets, so YOLOv8 training wieght, internal parameters, can be used to detect and classify any vehicle classes in COCO128 dataset such as car, motorcycle, bus, and truck easily and accurately. 
 But if we want to use it for any custom classes, we need to train our custom training weight first. This model also supports training mode that we can train any custom datasets for some specific object detection and classification.
 
-In this project, I will show how to easily setup process and run counting py file using YOLOv8 first, and the next step, I will display how to train custom data weight for my specific task, to classify 11 different vehicle classes.
+For the counting method, this system use OpenCV to create a referenced line to count any vehicle object that move through the line.
+
+In this project, I will show how to easily setup process and run counting py file using original weight of YOLOv8 first, and the next step, I will display how to train custom data weight for my specific task, to classify 11 different vehicle classes.
 
 more information about Ultralytics: https://docs.ultralytics.com/
 
@@ -39,13 +41,41 @@ more information about Pytorch: https://pytorch.org/get-started/locally/
 Now our environment is ready!!
 
 ## Running counting vehicles (4 classes in COCO128 Dataset)
-Setting INPUT_PATH, OUTPUT_PATH, WEIGHT_PATH (eg. yolov8m.pt)
-Then, run py file
+Setting INPUT_PATH, OUTPUT_PATH, WEIGHT_PATH (eg. yolov8m.pt), and position of coordination x, y of counting line
+Then, try to run counting .py file
 
 ```sh
 python ./py_files/yolov8_custom_counting_tocsvfile.py
 ```
 ![Running Process](images/run_to_count.png)
+
+## Create Custom Dataset
+To train a custom weight for other specific classes that are not in any original training datasets of YOLOv8, We have to prepared our own dataset in Ultralytics YOLOv8 format as follows. 
+- dataset that consists of image files of objects and text files that collect class id and bounding box of objects (split to train, validation, and test (optional) folders).
+- configuration (.yaml) file in that collect paths of dataset (train, val, and test), number of classes, and class names.
+
+![dataset format](images/dataset_format01.png)
+
+There are many ways to You can create your own dataset, in manual way or using any labeling tools, but using Roboflow framework is recommended for me.
+
+easy to annotate objects
+
+![roboflow01](images/RoboFlow01.png)
+
+![roboflow01](images/RoboFlow02.png)
+
+![roboflow03](images/RoboFlow03-Annotation.png)
+
+![roboflow04](images/RoboFlow04-HealthCheck.png)
+
+![roboflow05](images/RoboFlow05-Augmentation.png)
+
+![roboflow06](images/RoboFlow06-Export.png)
+
+
+
+
+
 
 
 
