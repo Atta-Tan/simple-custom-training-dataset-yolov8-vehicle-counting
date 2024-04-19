@@ -102,7 +102,8 @@ Setting WEIGHT_PATH with our customweight
 
 And then, try to run counting .py file again.
 
-![test Result](images/custom_counting_output.jpg)
+![test Result1](images/custom_counting_output01.jpg)
+![test Result2](images/custom_counting_output02.jpg)
 
 
 
