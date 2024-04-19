@@ -42,7 +42,7 @@ Now our environment is ready!!
 
 ## Running counting vehicles (4 classes in COCO128 Dataset)
 Setting INPUT_PATH, OUTPUT_PATH, WEIGHT_PATH (eg. yolov8m.pt), and position of coordination x, y of counting line
-Then, try to run counting .py file
+Run counting .py file
 
 ```sh
 python ./py_files/yolov8_custom_counting_tocsvfile.py
@@ -90,9 +90,11 @@ After training process, we will get our custom training weight in .pt file (best
 
 ![trainging Result](images/training_result.png)
 
-And now, we 
+And with this custom weight, we are ready to create new model for specific object detection and classification.
 
-## 
+## Running vehicle counting for custom task
+Setting WEIGHT_PATH with our customweight
+Then, try to run counting .py file again
 
 
 
