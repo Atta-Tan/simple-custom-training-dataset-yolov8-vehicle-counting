@@ -51,6 +51,12 @@ python ./py_files/yolov8_custom_counting_tocsvfile.py
 ```
 ![Running Process](images/run_to_count.png)
 
+
+
+https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/c181c47d-f5fc-444b-9f50-616114088a72
+
+
+
 ## Create Custom Dataset
 To train a custom weight for other specific classes that are not in any original training datasets of YOLOv8, We have to prepared our own dataset in Ultralytics YOLOv8 format as follows. 
 - dataset that consists of image files of objects and text files that collect class id and bounding box of objects (split to train, validation, and test (optional) folders).
