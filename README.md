@@ -30,7 +30,8 @@ pip install -e .
 ```
 
 (Optional) In case of need to run with GPU
-re-install pytorchon our machine
+
+Re-install pytorch on our machine.
 ```sh
 pip3 uninstall torch torchvision torchaudio
 pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
@@ -42,6 +43,7 @@ Now our environment is ready!!
 
 ## Running counting vehicles (4 classes in COCO128 Dataset)
 Setting INPUT_PATH, OUTPUT_PATH, WEIGHT_PATH (eg. yolov8m.pt), and position of coordination x, y of counting line
+
 Run counting .py file
 
 ```sh
@@ -95,6 +97,7 @@ And with this custom weight (best.pt), we are ready to create new model for spec
 
 ## Running vehicle counting for custom task
 Setting WEIGHT_PATH with our customweight
+
 Then, try to run counting .py file again
 
 ![test Result](images/custom_counting_output.jpg)
