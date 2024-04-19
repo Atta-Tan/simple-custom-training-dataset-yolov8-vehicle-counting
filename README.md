@@ -51,11 +51,7 @@ python ./py_files/yolov8_custom_counting_tocsvfile.py
 ```
 ![Running Process](images/run_to_count.png)
 
-
-
-https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/c181c47d-f5fc-444b-9f50-616114088a72
-
-
+https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/6592d039-8051-4f9e-8726-6b721c82221e
 
 ## Create Custom Dataset
 To train a custom weight for other specific classes that are not in any original training datasets of YOLOv8, We have to prepared our own dataset in Ultralytics YOLOv8 format as follows. 
@@ -108,11 +104,7 @@ Setting WEIGHT_PATH with our customweight
 
 And then, try to run counting .py file again.
 
-
-
-https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/a5801125-6d5d-4278-95c0-df99b107b9f1
-
-
+https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/1731db32-14ea-434a-9b30-dce8608188c2
 
 https://github.com/Atta-Tan/simple-custom-training-dataset-yolov8-vehicle-counting/assets/139097897/9acbe2b3-61b7-4e31-818a-b1f0221baffd
 
