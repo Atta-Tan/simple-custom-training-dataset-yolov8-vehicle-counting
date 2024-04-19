@@ -96,7 +96,7 @@ And with this custom weight (best.pt), we are ready to create new model for spec
 Setting WEIGHT_PATH with our customweight
 Then, try to run counting .py file again
 
-![test Result](vdo_traffic_01.MOV)
+![test Result](images/custom_counting_output.jpg)
 
 
 
